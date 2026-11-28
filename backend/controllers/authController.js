@@ -7,8 +7,8 @@ const generateToken = (id) =>
 
 const cookieOptions = {
   httpOnly: true,
-  secure: process.env.NODE_ENV === 'production',
-  sameSite: 'lax',
+  secure: true,
+  sameSite: 'none',
   maxAge: 7 * 24 * 60 * 60 * 1000,
 };
 
@@ -74,11 +74,11 @@ export const login = async (req, res) => {
 };
 
 export const logout = (req, res) => {
-  res.clearCookie('token', {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-  });
+res.clearCookie('token', {
+  httpOnly: true,
+  secure: true,
+  sameSite: 'none',
+});
 
   return res.status(200).json({
     success: true,
